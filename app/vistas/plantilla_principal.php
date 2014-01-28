@@ -27,9 +27,10 @@
 	    <div id="encabezado">
                 <h1>Table CRUD Emilio Crespo Perán</h1>
 		
-                <a href="<?php echo \core\URL::generar("inicio"); ?>"><div id="btn_menu">Inicio</div></a>
-                
-                <a href="<?php echo \core\URL::generar("tabla"); ?>"><div id="btn_menu">Tabla</div></a>
+		
+		    <a href="<?php echo \core\URL::generar("inicio"); ?>"><div id="btn_menu"><img src="<?php echo URL_ROOT; ?>recursos/imagenes/btn_home2.jpg" />Inicio</div></a>                
+		    <a href="<?php echo \core\URL::generar("tabla"); ?>"><div id="btn_menu">Tabla</div></a>
+		                
 		   		   
 	    </div>
 	    

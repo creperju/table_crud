@@ -11,11 +11,14 @@ namespace controladores;
 
 class errores extends \core\Controlador {
     
+    public function index(array $datos = array()){
+	
+	$datos['view_content'] = "Documento no encontrado.";
+	
+	$http_enviar_error = \core\Vista_Plantilla::generar("plantilla_principal", $datos, true);
+	\core\HTTP_Respuesta::set_http_header_status("404");
+	\core\HTTP_Respuesta::enviar($http_enviar_error);
+	
+    }
     
 }
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-

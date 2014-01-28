@@ -21,7 +21,7 @@ class Aplicacion extends \core\Clase_Base {
      */
     public static $controlador;
 
-    public static function iniciar() {
+    public function __construct() {
 
         // Interpretar url amigable, pasa parmametros /dato1/dato2/dato3/ 
         // a parámetros $_GET[p1]=dato1 $_GET[p2]=dato2  $_GET[p3]=dato3 ....

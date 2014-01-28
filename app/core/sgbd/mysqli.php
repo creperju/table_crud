@@ -88,7 +88,7 @@ class mysqli implements \core\sgbd\SQL_interface {
 		self::$prefix_ = \core\Configuracion::$db['prefix_'];
 		
 		self::$db_name = \core\Configuracion::$db['db_name'];
-		print("se ha conectado a la bd");
+		
 		return self::$connection;
 		
 	}

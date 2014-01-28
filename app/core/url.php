@@ -192,13 +192,7 @@ class URL {
 	private static function amigable(array $query_string = array(), $withLang = true, $administrator = true) {
 
 		$url = "";
-		if ($administrator && isset($_GET["administrator"])) {
-			$url .= "administrator/";
-		}
-		if ($withLang && \core\Configuracion::$idioma_seleccionado && \core\Configuracion::$idioma_seleccionado != \core\Configuracion::$idioma_por_defecto) {
-			$url .= \core\Configuracion::$idioma_seleccionado."/";
-		}
-		
+				
 		foreach ($query_string as $key => $value) {
 			$url .= "$value/";
 		}	

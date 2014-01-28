@@ -42,9 +42,9 @@ class Autoloader {
 
 	// Sustituir las \ que separan el namespaces del nombre de la clase por DS que separa carpetas
 	$clase_nombre = str_replace(array("\\"), array(DS), $clase_nombre);
-           print("nombre de la clase ".$clase_nombre."<br/>");
+         //  print("nombre de la clase ".$clase_nombre."<br/>");
 	$fichero_clase = strtolower(PATH_APP . $clase_nombre . ".php");
-          print("fichero de la clase ".$fichero_clase."<br/>");
+         // print("fichero de la clase ".$fichero_clase."<br/>");
 	if (!file_exists($fichero_clase)) {
 	    
 	    $clase_nombre = str_replace(
@@ -62,7 +62,6 @@ class Autoloader {
             throw new \Exception(__METHOD__ . ": NO EXISTE \$fichero_clase= $fichero_clase");             
         }
     
-	
     } // Fin de la función autoload
 
 }// Fin de la clase autoloader.php
