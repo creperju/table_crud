@@ -10,5 +10,3 @@ Realizado por Emilio Crespo Perán (emilio_nfs@hotmail.es)
 IES PALOMERAS VALLECAS
 MADRID (ESPAÑA).
 @last_update enero 2014
-
-

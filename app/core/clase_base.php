@@ -1,10 +1,14 @@
 <?php
-namespace core;
 
 /**
- * @author Jesús María de Quevedo Tomé <jequeto@gmail.com>
- * @since 20130130
+ * clase_base.php
+ * 
+ * @author Emilio Crespo Perán
+ * @since 28/01/2014
  */
+
+namespace core;
+
 class Clase_Base extends \core\Distribuidor {
 	/**
 	 * Contenedor de datos para cualquier clase, en especial para los controladores.

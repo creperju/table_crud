@@ -1,0 +1,32 @@
+/*  musica.css
+*   Estilos CSS para la sección MÚSICA en el apartado /app/vistas/musica
+*/
+
+/* Imagen de fondo del contenido */
+div#cuerpo{ background-image: url(./../../imagenes/musica/fondo.jpg); background-repeat: no-repeat;}
+
+/* Estilo de contenido */
+div#contenido{ padding: 20px; }
+
+/* Estilo para encuadrar los textos */
+#cuadro
+{
+    
+    display: inline-block;
+    background-color: white;
+    border-radius: 8px;
+    margin: 0px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-top: 8px;
+    opacity: 1;
+}
+
+/* Estilos de tabla */
+table
+{   
+    text-align: center;
+    border-collapse: separate;
+    border-spacing: 10px;
+    border: 0px solid;
+}

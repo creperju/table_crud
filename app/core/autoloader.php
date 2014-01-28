@@ -1,76 +1,68 @@
 <?php
+
+/** 
+ * autoloader.php
+ * 
+ * Esta clase define un autocargador que cargará correctamente clases que se
+ * instancien así new \nombre_namespace\nombre_clase(), donde nombre_namespace
+ * será el nombre del namespace del fichero que contiene la clase, y también
+ * será el nombre de la carpeta contenida en ...\app y que contiene el fichero
+ * php con la clase (...\app\nombre_namespace\nombre_clase.php)
+ * 
+ * @author Emilio Crespo Perán
+ * @since 28/01/2014
+ */
+
 namespace core;
 
-/**
- * Esta clase define un autocargador que cargará correctamente clases que se instancien así new \nombre_namespace\nombre_clase(), donde nombre_namespace será el nombre del namespace del fichero que contiene la clase, y también será el nombre de la carpeta contenida en ...\app y que contiene el fichero php con la clase (...\app\nombre_namespace\nombre_clase.php)
- * 
- * Exige que el nombre de todas las carpetas y de todos los ficheros estén escritos en minúsculas.
- *  
- * @author Jesús María de Quevedo Tomé <jequeto@gmail.com>
- * @since 20130130
- */
 class Autoloader {
-	
-	static $depuracion = false;
-	
-	function __construct() {
-		if (self::$depuracion) {
-			echo "<hr />";
-			echo __METHOD__." -> Arrancando el autoloader<br />";
-		}
-		spl_autoload_register(array($this, 'autoload')); // Esta es la función que registra la función que se activará cada vez que se intente instanciar una clase o se usar una clase estáticamente.
+
+    /**
+     * Función con la que se inicia la autocarga de clases.
+     */
+    function __construct() {
+        
+	spl_autoload_register(array($this, 'autoload'));
+    }
+    
+    
+    /**
+     * Carga las clases que no hayan sido ejecutadas en el hilo de ejecución de la aplicación. 
+     * @param string $clase_nombre Nombre de la clase para cargar.
+     * @return boolean Si la clase ya ha sido cargada, no devuelve nada.
+     * @throws \Exception Si no existe la clase.
+     */
+    function autoload($clase_nombre) {
+
+	// Si la clase existe es que ya está cargada y no hace falta incluirla
+	if (class_exists($clase_nombre)) {
+            print("ya esta cargada la clase ".$clase_nombre."<br/>");
+	    return;
 	}
-	
-	
-	/**
-	 * Esta es la función que tiene la "inteligencia" para buscar los ficheros por las carpetas del disco del servidor
-	 * @param string $class_name
-	 * @return boolean
-	 * @throws \Exception
-	 */
-	function autoload($class_name) {
-		
-		if (self::$depuracion) {
-			echo "<br /><hr />";
-			echo __METHOD__." -> \$class_name= $class_name"."<br />";
-		}
-		if (class_exists($class_name)) {
-			// Si la clase existe es que ya está cargada
-			if (self::$depuracion) { echo __METHOD__." -> EXISTE \$class_name= $class_name"."<br />";}
-			return;
-		}
-		// Sustituir las \ que separan el namespaces del nombre de la clase por DS que separa carpetas
-		$class_name = str_replace(array("\\", ), array(DS , ), $class_name);
-		
-		$fichero_clase = strtolower(PATH_APP.$class_name.".php");
-		
-		if ( ! file_exists($fichero_clase)) {
-			if (self::$depuracion) {
-				echo __METHOD__.": NO EXISTE \$fichero_clase= $fichero_clase"."<br />";
-			}
-			$class_name = str_replace(
-				array("controlador"), 
-				array("controladores"),
-				$class_name
-			);
-			$fichero_clase = PATH_APP.$class_name.".php";
-		}
-		
-		if ( ! file_exists($fichero_clase) ) {
-			// Buscamos en las clases de la librería de dompdf
-			$fichero_clase = strtolower(PATH_APP."lib/php/dompdf/include/$class_name.cls.php");
-		}
-		
-		if ( file_exists($fichero_clase) ) {
-			
-			if (self::$depuracion) {echo __METHOD__.": EXISTE y CARGANDO ... \$fichero_clase= $fichero_clase"."<br />";}
-			require_once $fichero_clase;
-		}
-		else {
-			
-			throw new \Exception(__METHOD__.": NO EXISTE \$fichero_clase= $fichero_clase");
-		}
-		
+
+	// Sustituir las \ que separan el namespaces del nombre de la clase por DS que separa carpetas
+	$clase_nombre = str_replace(array("\\"), array(DS), $clase_nombre);
+           print("nombre de la clase ".$clase_nombre."<br/>");
+	$fichero_clase = strtolower(PATH_APP . $clase_nombre . ".php");
+          print("fichero de la clase ".$fichero_clase."<br/>");
+	if (!file_exists($fichero_clase)) {
+	    
+	    $clase_nombre = str_replace(
+		    array("controlador"), array("controladores"), $clase_nombre
+	    );
+	    $fichero_clase = PATH_APP . $clase_nombre . ".php";
 	}
+
+	        
+        // Si existe el fichero, lo incluye una vez y si no lanza una excepción.
+	if (file_exists($fichero_clase)) {  
+            require_once $fichero_clase;             
+        }
+	else { 
+            throw new \Exception(__METHOD__ . ": NO EXISTE \$fichero_clase= $fichero_clase");             
+        }
+    
 	
-} // Fin de la clase
+    } // Fin de la función autoload
+
+}// Fin de la clase autoloader.php

@@ -1,0 +1,23 @@
+/*  libros.css
+*   Estilos CSS para la sección LIBROS en el apartado /app/vistas/libros
+*/
+
+/* Imagen de fondo del contenido */
+div#cuerpo{ background-image: url(./../../imagenes/libros/fondo.jpg); background-repeat: no-repeat;}
+
+/* Estilo de contenido */
+div#contenido{ height: 50%; padding: 20px; color: white; }
+
+/* Estilos de tabla */
+table
+{   
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-collapse: separate;
+    border-spacing: 10px;
+    border: 0px solid;
+}
+
+
+

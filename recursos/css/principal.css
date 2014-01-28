@@ -1,0 +1,83 @@
+/*  principal.css
+*   Estilo CSS principal, comunes a toda la aplicación.
+*/
+
+
+/* Aplica el tipo de letra 'calibri' a todo el body */
+body{ font-family: calibri; }
+
+
+/* Fondo de la cabecera */
+div#encabezado{ background-image: url('../imagenes/fondo_cabecera.jpg'); }
+
+
+/* Estilo de encabezado y pie */
+div#encabezado, div#pie
+{   
+    height: 96px;
+    clear: both;
+    margin-left: 15%;
+    margin-right: 15%;   
+
+    background-color: black;
+    color: white;
+
+    border-radius: 20px 20px 20px 20px;    
+}
+
+
+/* Estilo del contenido de la plantilla */
+div#cuerpo
+{
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 15%;
+    margin-right: 15%;
+
+    border-radius: 10px;
+}
+
+
+/* Centra el texto y añade un padding a h1-encabezado y el pie */
+div#encabezado h1, div#pie
+{
+    padding-top: 10px;
+
+    text-align: center;
+}
+
+
+/* Estilo de botones del menú */
+div#menu_1, div#menu, div#menu_2
+{
+    float: left;
+    width: 25%;
+
+    padding-top: 6px;
+    padding-bottom: 6px;
+    
+    cursor: pointer;
+    
+    text-align: center;
+
+    background-image: url('../imagenes/menu_inactivo.jpg'); // Imagen con menu inactivo
+}
+
+
+/* Tratamiento de bordes redondos en esquinas en el menú */
+div#menu_1{ border-radius: 0px 0px 0px 10px; }
+div#menu_2{ border-radius: 0px 0px 10px 0px; }
+
+
+/* Cambia la imagen de fondo del menú*/ 
+div#menu_1:hover, div#menu:hover, div#menu_2:hover
+{
+    background-image: url('../imagenes/menu_activo.jpg'); // Imagen con menu activo
+}
+
+
+/* Estilo de los enlaces */
+div#pie a{ color: red; font-weight: bold; text-decoration: none; }
+div#encabezado a{ color: white; }
+
+

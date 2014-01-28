@@ -1,28 +1,28 @@
 <?php
+
+/**
+ * inicio.php
+ * 
+ * @author Emilio Crespo Perán
+ * @since 28/01/2014
+ */
+
 namespace controladores;
 
 class inicio extends \core\Controlador {
-	
-	public function index(array $datos = array()) {
+    
+    
+    public function index(array $datos = null){
+        
+        
+        
+    }
+    
+    
+}
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-		$datos['view_content'] = \core\Vista::generar(__FUNCTION__, $datos, true);
-		$http_body = \core\Vista_Plantilla::generar('plantilla_principal', $datos);
-		\core\HTTP_Respuesta::enviar($http_body);
-		
-	}
-	
-	
-	
-	public function internacional(array $datos = array()) {
-		
-//		echo \core\Idioma::text("title", "plantilla_internacional", "en"); 
-//		echo \core\Idioma::text("no existe", "plantilla_internacional", "en"); 
-//		echo \core\Idioma::text("title", "plantilla_internacional", "es"); 
-//		echo \core\URL::generar("", false); exit(0);
-		$http_body = \core\Vista_Plantilla::generar('plantilla_internacional');
-		\core\HTTP_Respuesta::enviar($http_body);
-		
-	}
-	
-	
-} // Fin de la clase
