@@ -1,4 +1,4 @@
-<span>
+<span><pre style="font-family: calibri;">
 Ejercicio Table_CRUD
 
 El ejercicio trata del mantenimiento (altas, bajas, consultas y modificaciones de filas) de una tabla de datos
@@ -10,4 +10,4 @@ Realizado por Emilio Crespo Perán (emilio_nfs@hotmail.es)
 
 IES PALOMERAS VALLECAS
 MADRID (ESPAÑA).
-</span>
+    </pre></span>

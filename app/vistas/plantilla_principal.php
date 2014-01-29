@@ -19,19 +19,52 @@
 				
 		<!-- Importo los CSS que tendrá la plantilla_principal y el que cargará con cada sección -->
 		<link rel="stylesheet" type="text/css" href="<?php echo URL_ROOT; ?>recursos/css/principal.css" />
-						
+		
+		<script type="text/javascript">
+		
+		    function cambiar_btn_menu(menu,tipo){
+			var enlace = "<?php echo URL_ROOT; ?>recursos/imagenes/btn_"+menu;
+			
+			switch(tipo){
+			    case 'in':
+				document.getElementById("btn_"+menu).style.backgroundColor = "#188DB8";			
+				document.getElementById("img_"+menu).src = enlace+"_activo.gif";
+				break;
+			    case 'out':
+				document.getElementById("btn_"+menu).style.backgroundColor = '#3299BB';			
+				document.getElementById("img_"+menu).src = enlace+"_inactivo.gif";
+				break;
+			}
+	
+		    }
+		
+		</script>
+		
 	</head>
 
 	<body>
 	
 	    <div id="encabezado">
-                <h1>Table CRUD Emilio Crespo Perán</h1>
+                <h1>Table CRUD Emilio Crespo Perán</h1>		
+		    
+		<a href="<?php echo \core\URL::generar("inicio"); ?>">
+		    <div class="btn_menu" id="btn_inicio"
+			 onmouseover="cambiar_btn_menu('inicio','in');"
+			 onmouseout="cambiar_btn_menu('inicio','out');">
+			<img class="img_btn_menu" id="img_inicio" src="<?php echo URL_ROOT; ?>recursos/imagenes/btn_inicio_inactivo.gif"/>
+			<span>Inicio</span>
+		    </div>
+		</a>        
 		
+		<a href="<?php echo \core\URL::generar("tabla"); ?>">
+		    <div class="btn_menu" id="btn_tabla"
+			 onmouseover="cambiar_btn_menu('tabla','in');"
+			 onmouseout="cambiar_btn_menu('tabla','out');">
+			<img class="img_btn_menu" id="img_tabla" src="<?php echo URL_ROOT; ?>recursos/imagenes/btn_tabla_inactivo.gif"/>
+			<span>Tabla</span>
+		    </div>
+		</a>   
 		
-		    <a href="<?php echo \core\URL::generar("inicio"); ?>"><div id="btn_menu"><img src="<?php echo URL_ROOT; ?>recursos/imagenes/btn_home2.jpg" />Inicio</div></a>                
-		    <a href="<?php echo \core\URL::generar("tabla"); ?>"><div id="btn_menu">Tabla</div></a>
-		                
-		   		   
 	    </div>
 	    
 	    <div id="cuerpo">
@@ -44,7 +77,7 @@
 	    
 	    <div id="pie">
 		
-		Desarrollado por Emilio Crespo Perán &copy;</br>
+		Sitio Web desarrollado por Emilio Crespo Perán &copy;</br>
 		Última modificación: 27/11/2013</br>
                 <a href="mailto:emilio_nfs@hotmail.es">Contacto</a>
 		
