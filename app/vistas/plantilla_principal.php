@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="es">
 	<head>
             <title><?php echo TITULO; ?></title>
 		<meta name="Description" content="Explicaci�n de la p�gina" /> 

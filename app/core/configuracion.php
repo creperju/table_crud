@@ -51,7 +51,7 @@ class Configuracion {
 		'user'     => 'daw2_user',
 		'password' => 'daw2_user',
 		'db_name'  => 'daw2',
-		'prefix_'  => 'daw2_'
+		'prefix_'  => 'tc_'
 	);
 	
 

@@ -159,19 +159,16 @@ class mysqli implements \core\sgbd\SQL_interface {
 	
 	public static function execute($sql) {
 		
-		if (self::$depuracion) {echo __METHOD__." \$sql = $sql <br />";}
+		
 		
 		self::$query = $sql; // Guardamos la consulta a ejecutar.
 		
 		self::$result = mysqli_query(self::$connection,$sql,MYSQLI_USE_RESULT);
 		
-		if ( self::$result === false) {
-			if (self::$depuracion) {
-				throw new \Exception(__METHOD__." Consulta= $sql <br />Error = ".  mysqli_error(self::$connection));
-			}
-			else {
-				throw new \Exception("Error fatal");
-			}
+		if ( self::$result === false) {			
+			
+			throw new \Exception("Error fatal");
+			
 		}
 		elseif (is_object(self::$result)) {
 			return self::get_rows();

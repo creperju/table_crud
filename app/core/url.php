@@ -125,29 +125,6 @@ class URL {
 	
 	
 
-	/**
-	 * Genera una url absoluta con administrator e idioma, con esquema http.
-	 * 
-	 * @param string $query_string
-	 * @return string
-	 */
-	static function generar_con_idioma($query_string = array()) {
-		
-		return self::generar($query_string, true, true);
-		
-	}
-
-	/**
-	 * Genera una url absoluta con administrator y sin idioma, con esquema http.
-	 * 
-	 * @param string $query_string
-	 * @return string
-	 */
-	static function generar_sin_idioma($query_string = array()) {
-		
-		return self::generar($query_string, false, true);
-		
-	}
 	
 
 	/**
@@ -204,44 +181,4 @@ class URL {
 	
 	
 	
-	/**
-	 * Registra en el array $_SESSION la URL actual y la anterior y la candidata 
-	 * para el botón volver o cancelar
-	 */
-	public static function registrar() {
-		
-		$_SESSION["url"]["actual"] =  (isset($_SERVER['REQUEST_SCHEME'])?$_SERVER['REQUEST_SCHEME']:($_SERVER['SERVER_PORT']==80?"http":"https"))."://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
-		$_SESSION["url"]["anterior"] =  (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : URL_ROOT);
-		
-		if ( !isset($_SESSION["url"]["btn_volver"])) {
-			$_SESSION["url"]["btn_volver"] = URL_ROOT;
-		}
-		if ( ! preg_match("/form/", $_SESSION["url"]["anterior"])) {
-			$_SESSION["url"]["btn_volver"] =  $_SESSION["url"]["anterior"] ;
-		}
-		
-	}
-	
-	
-	/**
-	 * Devuelve una URL que sea recargable, es decir, que no sea formulario ni validación de formularo
-	 * 
-	 * @return string URL
-	 */
-	public static function btn_volver() {
-		
-		return self::url_btn_volver();
-		
-	}
-	
-	/**
-	 * Devuelve una URL que sea recargable, es decir, que no sea formulario ni validación de formularo
-	 * 
-	 * @return string URL
-	 */
-	public static function url_btn_volver() {
-		
-		return $_SESSION["url"]["btn_volver"];
-		
-	}
 }
