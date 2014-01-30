@@ -1,0 +1,49 @@
+/*  principal.css
+*   Estilo CSS principal, comunes a toda la aplicación.
+*/
+
+
+/* Aplica el tipo de letra 'calibri' a todo el body */
+body{ font-family: arial; background-color: #E9E9E9;}
+
+/* Parte de la pantalla que le corresponde al encabezado, cuerpo y pie */
+div#encabezado{ height: 130px; width: 63%; margin: auto; }
+div#encabezado h1{text-align: center;}
+
+div#cuerpo
+{ 
+    width: 60%; 
+    margin: 20px auto auto auto; padding: 20px; 
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 10px 8px 25px #666;
+}
+div#pie
+{ 
+    width: 60%; 
+    margin: 40px auto auto auto; padding: 20px;
+    text-align: center;
+}
+
+
+/* Estilo de los botones */
+.btn_menu
+{ 
+    width: 48%; padding: 5px;
+    background-color: #3299BB; color: white;
+}
+#btn_inicio{float: left; }
+#btn_tabla{float: right; }
+
+
+.btn_menu span{ font-size: 30px;}
+.img_btn_menu
+{ 
+    float: left;
+    height: 30px; width: 30px; 
+    margin-left: 2%; margin-right: 35%;
+    padding: 5px 0px 5px 0px;
+}
+
+/* Estilos comunes entre encabezado y pie */
+div#encabezado, div#pie { color: #666; }
