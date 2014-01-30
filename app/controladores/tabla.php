@@ -12,6 +12,13 @@ namespace controladores;
 class tabla extends \core\Controlador {
     
     
+    function index(array $datos = array ()){
+	
+	
+	
+    }
+    
+    
 }
 /* 
  * To change this license header, choose License Headers in Project Properties.

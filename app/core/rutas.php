@@ -40,15 +40,18 @@ class Rutas {
 			
 			$query_string = str_replace($carpeta, "", $_SERVER["REQUEST_URI"]); 
 			
-
                         // Ahora $query_string será una cadena de la forma "/dato1/dato2/dato3/"
 			// Quitamos la primera y la última barra si existen
 			if (stripos($query_string, "/") == 0 )
 				$query_string = substr($query_string, 1);
-			if (strrpos($query_string, "/") == strlen($query_string)-1 )
+			
+			// Quitamos la última barra si existe, como miramos el último caracter con el (-1)
+			// Es posible que, si en la url la longitud del controlador es 1, no realiza bien
+			// su función, y no le devuelve la página de error de documento, asique le añadimos
+			// strlen($query_string) > 1 para su funcionamiento
+			if (strrpos($query_string, "/") == strlen($query_string)-1 && strlen($query_string) > 1)
 				$query_string = substr($query_string, 0, strlen($query_string)-1);
 			
-                        
                         // Pasamos los parámetros amigables a un array llamado $parámetros
                         //  que tendrá índice entero.
 			$parametros = explode("/", $query_string);
