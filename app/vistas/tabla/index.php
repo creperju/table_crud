@@ -21,8 +21,8 @@
                 <td>{$fila['fecha_de_lanzamiento']}</td>
                 <td>{$fila['precio']}</td>
                 <td>
-                    <a href='?menu=tablas&submenu=form_modificar&id={$fila['id']}'><button>Modificar</button></a>
-                    <a href='?menu=tablas&submenu=form_borrar&id={$fila['id']}'><button>Borrar</button></a>
+                    <a href='?menu=tabla&submenu=form_modificar&id={$fila['id']}'><button>Modificar</button></a>
+                    <a href='?menu=tabla&submenu=form_borrar&id={$fila['id']}'><button>Borrar</button></a>
                 </td>
             </tr>";
         }
