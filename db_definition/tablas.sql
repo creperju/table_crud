@@ -1,4 +1,6 @@
 
+create database if not exists daw2;
+
 use daw2;
 
 set names utf8;

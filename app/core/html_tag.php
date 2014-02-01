@@ -46,8 +46,8 @@ class HTML_Tag extends \core\Clase_Base {
 	public static function form_registrar($name = null, $method = "post") {
 		
 		$form_id  = rand(1000,9999); 
-		$_SESSION["formularios"]["form_id"][$form_id ] = $name ;
-		$_SESSION["formularios"]["method"][$form_id ] = $method;
+		$_REQUEST["formularios"]["form_id"][$form_id ] = $name ;
+		$_REQUEST["formularios"]["method"][$form_id ] = $method;
 		
 		return ("<input type='hidden' name='form_id' value='$form_id ' />\n");
 		
