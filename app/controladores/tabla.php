@@ -39,19 +39,7 @@ class tabla extends \core\Controlador {
     
     function form_modificar(array $datos = array()){
         
-        /*
-       $datos['view_content'] = "El id de la fila a modificar es -> ".$_GET['p3'];
         
-	//$datos['view_content'] = \core\Vista::generar(__FUNCTION__, $datos);
-	//	print("<pre>");var_dump($_GET);print("</pre>");
-	$controlador =	isset($_GET['menu'])?	$_GET['menu']:	    $_GET['p1'];
-	$metodo =	isset($_GET['submenu'])?$_GET['submenu']:   $_GET['p2'];
-	$id =		isset($_GET['id'])?	$_GET['id']:	    $_GET['p3'];
-	
-	$_GET['p3'] = "";
-	
-        $contenido = \core\Vista_Plantilla::generar("plantilla_principal",$datos);
-        \core\HTTP_Respuesta::enviar($contenido);*/
         
 	$datos['form_name'] = __FUNCTION__;
 	$datos['view_content'] = \core\Vista::generar(__FUNCTION__, $datos);
@@ -63,12 +51,7 @@ class tabla extends \core\Controlador {
     
     
     function form_borrar(array $datos = array()){
-        /*
-        
-        $datos['view_content'] = var_dump($_POST);
-        
-        $contenido = \core\Vista_Plantilla::generar("plantilla_principal",$datos);
-        \core\HTTP_Respuesta::enviar($contenido);*/
+       
 	
 	
 	$datos['form_name'] = __FUNCTION__;
@@ -79,5 +62,80 @@ class tabla extends \core\Controlador {
     }
     
     
+    function form_validado_insertar(array $datos = array()){
+        
+        $datos_insert = array(
+            "titulo" =>                 $_POST['titulo'],
+            "plataforma" =>             $_POST['plataforma'],
+            "fabricante" =>             $_POST['fabricante'],
+            "fecha_de_lanzamiento" =>   $_POST['fecha'],
+            "precio" =>                 $_POST['precio']
+        );
+        
+        //print("<pre>");var_dump($datos_insert);print("</pre>");exit;
+        
+        if(! \modelos\Datos_SQL::table("juegos")->insert($datos_insert) ){
+            $datos = array("alerta" => "Error al grabar los datos");
+			// Definir el controlador que responderá después de la inserción
+			return $this->cargar_controlador('tabla', 'form_insertar',$datos);
+        }
+        else{
+            
+            $datos = array("alerta" => "Éxito al grabar los datos.");
+			// Definir el controlador que responderá después de la inserción
+			return $this->cargar_controlador('tabla', 'index',$datos);	
+            
+        }
+        
+        
+    }
+    
+    function form_validado_modificar(array $datos = array()){
+        
+        $datos_update = array(
+            "id" =>                     $_POST['id'],
+            "titulo" =>                 $_POST['titulo'],
+            "plataforma" =>             $_POST['plataforma'],
+            "fabricante" =>             $_POST['fabricante'],
+            "fecha_de_lanzamiento" =>   $_POST['fecha'],
+            "precio" =>                 $_POST['precio']
+        );
+        print($datos_update['id']);exit;
+        if(! \modelos\Datos_SQL::table("tabla")->update($datos_update) ){
+            $datos = array("alerta" => "Error al grabar los datos");
+			// Definir el controlador que responderá después de la inserción
+			return $this->cargar_controlador('tabla', 'form_insertar',$datos_update);
+        }
+        else{
+            
+            $datos = array("alerta" => "Éxito al grabar los datos.");
+			// Definir el controlador que responderá después de la inserción
+			return $this->cargar_controlador('tabla', 'index',$datos);	
+            
+        }
+        
+        
+    }
+    
+    function form_validado_borrar(array $datos = array()){
+        
+        $datos_delete = array(
+            "titulo" =>                 $_POST['titulo'],
+            "plataforma" =>             $_POST['plataforma'],
+            "fabricante" =>             $_POST['fabricante'],
+            "fecha_de_lanzamiento" =>   $_POST['fecha'],
+            "precio" =>                 $_POST['precio']
+        );
+        
+        if(! \modelos\Datos_SQL::delete($datos_delete, 'tabla') )
+                $datos = array("alerta" => "Error al borrar los datos");
+        
+        else            
+                $datos = array("alerta" => "Éxito al borrar los datos.");
+        
+        
+        return $this->cargar_controlador('tabla', 'index',$datos);	
+        
+    }
     
 }

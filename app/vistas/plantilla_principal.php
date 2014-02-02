@@ -19,25 +19,36 @@
 				
 		<!-- Importo los CSS que tendrá la plantilla_principal y el que cargará con cada sección -->
 		<link rel="stylesheet" type="text/css" href="<?php echo URL_ROOT; ?>recursos/css/principal.css" />
-		
+		<script type='text/javascript' src="<?php echo URL_ROOT."recursos".DS."js".DS."jquery".DS."jquery-1.10.2.min.js"; ?>" ></script>
+                
 		<script type="text/javascript">
 		
 		    function cambiar_btn_menu(menu,tipo){
-			var enlace = "<?php echo URL_ROOT; ?>recursos/imagenes/btn_"+menu;
-			
-			switch(tipo){
-			    case 'in':
-				document.getElementById("btn_"+menu).style.backgroundColor = "#188DB8";			
-				document.getElementById("img_"+menu).src = enlace+"_activo.gif";
-				break;
-			    case 'out':
-				document.getElementById("btn_"+menu).style.backgroundColor = '#3299BB';			
-				document.getElementById("img_"+menu).src = enlace+"_inactivo.gif";
-				break;
-			}
+                            var enlace = "<?php echo URL_ROOT; ?>recursos/imagenes/btn_"+menu;
+
+                            switch(tipo){
+                                case 'in':
+                                    document.getElementById("btn_"+menu).style.backgroundColor = "#188DB8";			
+                                    document.getElementById("img_"+menu).src = enlace+"_activo.gif";
+                                    break;
+                                case 'out':
+                                    document.getElementById("btn_"+menu).style.backgroundColor = '#3299BB';			
+                                    document.getElementById("img_"+menu).src = enlace+"_inactivo.gif";
+                                    break;
+                            }
 	
 		    }
 		
+                    
+                    function submit_post_request_form(action, id) {
+                        
+                            $("#post_request_form").attr("action",action);
+                            $("#id").attr("value", id);
+                            $("#post_request_form").submit();
+					
+                    }
+                
+                
 		</script>
 		
 	</head>
