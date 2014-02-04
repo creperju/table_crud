@@ -36,29 +36,31 @@ class tabla extends \core\Controlador {
     }
 
     function form_modificar(array $datos = array()) {
+	
+	$datos['form_name'] = __FUNCTION__;
+	$id = \core\HTTP_Requerimiento::post("id");
+		
+	
+	if ( ! $id )
+		return $this->cargar_controlador('errores', 'index');
+	else{
+	    
+		$clausulas['where'] = $id;
+	    
+	    if ( ! $filas = \modelos\Datos_SQL::table("juegos")->select($clausulas) )
+			return $this->cargar_controlador('errores', 'index');
+	    else{
+		
+			$datos['values'] = $filas[0];
+			$datos['values']['fecha_de_lanzamiento'] = \core\Conversiones::fecha_hora_mysql_a_es($datos['values']['precio']);
+			$datos['values']['precio'] = \core\Conversiones::decimal_punto_a_coma($datos['values']['precio']);
+							
+	    }
+	    
+	    
+	}		
+			
 
-        $datos['form_name'] = __FUNCTION__;
-        
-        $datos['values']['id']=$_REQUEST['id'];
-            
-        $clausulas['where'] = $datos['values']['id'];
-        if (!$filas = \modelos\Datos_SQL::select($clausulas, 'juegos')) {
-            return \core\Distribuidor::cargar_controlador('errores', 'index', $datos);
-        }
-        else {
-            // Los valores se guardan en el array $datos['values']
-            $datos['values'] = $filas[0];
-            
-            // Cambio los formatos de fecha y precio
-            $datos['values']['fecha_de_lanzamiento'] = \core\Conversiones::fecha_hora_mysql_a_es($datos['values']['fecha_de_lanzamiento']);
-            $datos['values']['precio'] = \core\Conversiones::decimal_punto_a_coma($datos['values']['precio']);
-
-            
-            
-        }
-            
-        
-        
         
         $datos['view_content'] = \core\Vista::generar(__FUNCTION__, $datos);
         $http_body = \core\Vista_Plantilla::generar('plantilla_principal', $datos);
@@ -121,15 +123,9 @@ class tabla extends \core\Controlador {
     }
 
     function form_modificar_validar(array $datos = array()) {
-        //print("entra");exit(0);
-        $datos_update = array(
-            //"id" =>                     $_POST['id'],
-            "titulo" => $_POST['titulo'],
-            "plataforma" => $_POST['plataforma'],
-            "fabricante" => $_POST['fabricante'],
-            "fecha_de_lanzamiento" => \core\Conversiones::fecha_hora_es_a_mysql($_POST['fecha']),
-            "precio" => \core\Conversiones::decimal_coma_a_punto($_POST['precio'])
-        );
+        
+        var_dump($datos);
+	
         //print($datos_update['id']);exit;
         \modelos\Datos_SQL::update($datos_update, "juegos", $_POST['id']);
 

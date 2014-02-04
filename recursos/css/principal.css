@@ -55,7 +55,7 @@ div#contenido span{ font-family: calibri; }
 
 /* Estilo de la tabla index */
 #tabla{ width: 100%; text-align: center; margin: auto auto 30px auto; border-collapse: collapse;}
-th{ border: black dotted 6px; background-color: indigo; color: white;}
+th{ border: black dotted 6px; background-color: indigo; color: white; padding: 10px;}
 tr{border: black solid 5px;}
 td{border: beige solid 4px; width: 17%;}
 /* Estilo de botón 'modificar' y 'borrar' dentro de la tabla */
