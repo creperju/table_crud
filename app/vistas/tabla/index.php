@@ -1,11 +1,11 @@
-<form id='post_request_form'
-				action=''  
-				method='post'
-			><input name='id' id='id' type='hidden' />
+<form id='post_request_form' action='' method='post'>
+        <input name='id' id='id' type='hidden' />
 </form>
-<h3>Listado de juegos<h4><a onclick="">A&ntilde;adir juego</a></h4></h3>
 
-<table border="1">
+<h2>Listado de juegos</h2>
+<h4><a href="<?php echo URL_ROOT; ?>tabla/form_insertar">A&ntilde;adir juego</a></h4>
+
+<table border="0" id="tabla" cellspacing="10">
     <tr>
         <th>T&iacute;tulo</th>
         <th>Plataforma</th>
@@ -32,7 +32,7 @@
             </tr>";
         }
         echo "<tr>
-                <td colspan='6'>
+                <td colspan='6'style='padding: 10px;'>
                     <a href='".URL_ROOT."tabla/form_insertar'><button>A&ntilde;adir juego</button></a>
                 </td>
             </tr>";

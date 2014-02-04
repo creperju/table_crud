@@ -175,7 +175,7 @@ class Validaciones  {
 					if (isset($resultados_validacion["errores"][$parametro]))
 						$resultados_validacion["errores"][$parametro].=" --php: $validador: ".$resultado_validador;
 					else
-						$resultados_validacion["errores"][$parametro]=" --php: $validador:  ".$resultado_validador;
+						$resultados_validacion["errores"][$parametro]=$resultado_validador;
 				}
 			}
 		}
@@ -188,7 +188,8 @@ class Validaciones  {
 		if (count($resultados_validacion["errores"])) {
 			$resultados_validacion["errores"]['validacion'] = 'Corrige los errores.';
 		}
-		
+		//var_dump($resultados_validacion['values']);exit(0);
+                
 		if (is_array($datos)) { // Si se aporta $datos y es array
 			$datos["values"] = $resultados_validacion["values"];
 			$datos["errores"] = $resultados_validacion["errores"];
@@ -310,11 +311,11 @@ class Validaciones  {
 	public static function errores_precio($cadena=null) {
 		
 		$mensaje = null; // Optimista
-		
+//		$patron="/^(  (\d{1,3} (\.\d{3}){0,} |\d{1,})    (\,\d{1,2}){0,1})$/i";
 		if ( ! is_null($cadena) && strlen($cadena)) {
-			$patron="/^((\d{1,3}(\.\d{3}){0,}|\d{1,})(\,\d{1,2}){0,1})$/i";
+			$patron="/^\d{1,3}(\,\d{1,2}){0,1}$/i"; // Modificado a 100,10
 			if( ! preg_match($patron, $cadena))
-				$mensaje ="-php- Error: El número puede escribirse con separador de miles(.) y coma decimal(,) y máximo dos decimales";
+				$mensaje ="El número puede escribirse con tres cifras y máximo dos decimales (Ej: 123,45)";
 		}
 		return $mensaje ;		
 	}
@@ -331,11 +332,14 @@ class Validaciones  {
 		if ($cadena!=null) {
 			$cadena=str_replace(array(' ', '-', '.', ',', ':'), '/', $cadena);
 			/* Para que sea mas facil y ahorrar comprobaciones cambiamos por / todos los signos que pone en el array, de esta manera la fecha siempre sera del tipo dd/mm/aaaa */
-			$patron_fecha_hora="/^\d{1,2}\/\d{1,2}\/\d{4}\/\d{2}\/\d{2}\/\d{2}/";
+			$patron_fecha="/^\d{1,2}\/\d{1,2}\/\d{4}$/";
 			$encuentros=array();
-			if (preg_match($patron_fecha_hora, $cadena, $encuentros)) {
+			if (preg_match($patron_fecha, $cadena, $encuentros)) {
 				$numeros = explode('/', $encuentros[0]); //con explode convertimos en subcadenas el array cadena, cada subcadena esta formada por la division que hace el caracter.
-				if (!mktime ($numeros[3], $numeros[4], $numeros[5], $numeros[1], $numeros[0], $numeros[2]))
+				
+                                // Condición anterior
+                                if (!mktime(0,0,0,$numeros[1], $numeros[0], $numeros[2]))
+                                //if( ! checkdate($numeros[1], $numeros[0], $numeros[2]) )
 					$mensaje="La fecha  {$encuentros[0]} es errónea . Revísela. ";
 
 			}

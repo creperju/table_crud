@@ -160,7 +160,6 @@ class mysqli implements \core\sgbd\SQL_interface {
 	public static function execute($sql) {
 		
 		
-		
 		self::$query = $sql; // Guardamos la consulta a ejecutar.
 		
 		self::$result = mysqli_query(self::$connection,$sql,MYSQLI_USE_RESULT);
@@ -277,7 +276,7 @@ class mysqli implements \core\sgbd\SQL_interface {
 		
 		
 		if (isset($where) && strlen($where))
-			$where = " where $where";
+			$where = " where id = $where";
 		elseif (isset($fila['id']))
 			$where = " where id = {$fila['id']}";
 		else {
@@ -331,7 +330,8 @@ class mysqli implements \core\sgbd\SQL_interface {
 
 	
 	public static function delete( $clausulas = array(), $table = null, $where = null) {
-		
+		//print("id: ".$clausulas['id']);exit(0);
+            
 		if ( ! isset($clausulas['id']) && ! strlen($where))
 			throw new \Exception(__METHOD__." Error: debe aportarse la id or \$where.");
 		
@@ -345,24 +345,22 @@ class mysqli implements \core\sgbd\SQL_interface {
 		
 		
 		if (isset($where) && strlen($where))
-			$where = " where $where";
+			$where_id = " where id =".$where;
 		elseif (isset($clausulas['where']) && strlen($clausulas['where']))
-			$where = " where {$clausulas['where']}";
+			$where_id = " where {$clausulas['where']}";
 		elseif (isset($clausulas['id']))
-			$where = " where id = {$clausulas['id']}";
+			$where_id = " where id = {$clausulas['id']}";
 		else {
-			$where = "";
+			$where_id = "";
 		}
 		
-		$order_by = ( isset($clausulas['order_by']) ? " order by ".$clausulas['order_by'] : "");
 		
 		$sql = "
 			delete from ".self::get_prefix_tabla($table)."
-				$where
-				$order_by
+				$where_id				
 			;
 		";
-		
+                //print($sql);exit(0);
 		return self::execute($sql);
 		
 	}

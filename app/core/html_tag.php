@@ -154,7 +154,7 @@ class HTML_Tag extends \core\Clase_Base {
 			$argumentos .= " $key ='$value' ";
 		}
 		$uri = \core\URL::http_generar($query_string);
-		$link = "<button onclick='submit_post_request_form(\"$uri\", \"$id\");'  $argumentos >$texto</button>";
+		$link = "<button class='boton' onclick='submit_post_request_form(\"$uri\", \"$id\");'  $argumentos >$texto</button>";
 		return $link;
 		
 	}

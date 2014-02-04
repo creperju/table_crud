@@ -19,7 +19,7 @@
 				
 		<!-- Importo los CSS que tendrá la plantilla_principal y el que cargará con cada sección -->
 		<link rel="stylesheet" type="text/css" href="<?php echo URL_ROOT; ?>recursos/css/principal.css" />
-		<script type='text/javascript' src="<?php echo URL_ROOT."recursos".DS."js".DS."jquery".DS."jquery-1.10.2.min.js"; ?>" ></script>
+		<script type='text/javascript' src="<?php echo URL_ROOT."recursos/js/jquery/jquery-1.10.2.min.js"; ?>" ></script>
                 
 		<script type="text/javascript">
 		
