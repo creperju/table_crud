@@ -501,7 +501,7 @@ class Validaciones  {
 					$valores_aportados.=" , ";
 				}
 			}
-                           var_dump($parametros);
+                         
 			$filas = \modelos\Datos_SQL::select($parametros, $tabla);
 			if ( ! $filas || ! count($filas)) {
 				$mensaje.="El/Los valor/es aportado/s <b>[ $valores_aportados ]</b> no existe/n en la tabla de referencia [$tabla] en las columnas [{$parametros["where"]}] . Escribe un valor que sí exista.";

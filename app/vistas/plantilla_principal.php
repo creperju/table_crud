@@ -89,8 +89,8 @@
 	    <div id="pie">
 		
 		Sitio Web desarrollado por Emilio Crespo Perán &copy;</br>
-		Última modificación: 27/11/2013</br>
-                <a href="mailto:emilio_nfs@hotmail.es">Contacto</a>
+		Última modificación: 06/02/2014</br>
+                <a class="contacto" href="mailto:emilio_nfs@hotmail.es">Contacto</a>
 		
 	    </div>
 	    
