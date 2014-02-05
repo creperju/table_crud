@@ -37,8 +37,7 @@
                 type='text' 
                 size='20'  
                 maxlength='30' 
-                value='<?php echo \core\Array_Datos::values('titulo', $datos); ?>' 
-                onblur="v_titulo();" 
+                value='<?php echo \core\Array_Datos::values('titulo', $datos); ?>'            
                 <?php if(isset($lectura))echo $lectura; ?> />
         
         <span class="error" id="error_titulo">
@@ -53,8 +52,7 @@
                 type='text' 
                 size='20'  
                 maxlength='20' 
-                value='<?php echo \core\Array_Datos::values('plataforma', $datos); ?>' 
-                onblur="v_plataforma();"
+                value='<?php echo \core\Array_Datos::values('plataforma', $datos); ?>'                
                 <?php if(isset($lectura))echo $lectura; ?> />
         
         <span class="error" id="error_plataforma">
@@ -69,8 +67,7 @@
                 type='text' 
                 size='20'  
                 maxlength='20' 
-                value='<?php echo \core\Array_Datos::values('fabricante', $datos); ?>' 
-                onblur="v_fabricante();"
+                value='<?php echo \core\Array_Datos::values('fabricante', $datos); ?>'                
                 <?php if(isset($lectura))echo $lectura; ?> />        
         
         <span class="error" id="error_fabricante">
@@ -85,8 +82,7 @@
                type='text' 
                size='10' 
                maxlength='10' 
-               value='<?php echo \core\Array_Datos::values('fecha_de_lanzamiento', $datos); ?>' 
-               onblur="v_fecha();"
+               value='<?php echo \core\Array_Datos::values('fecha_de_lanzamiento', $datos); ?>'              
                <?php if(isset($lectura))echo $lectura; ?> />
         
         <span class="error" id="error_fecha">
@@ -101,8 +97,7 @@
                 type='text' 
                 size='10'  
                 maxlength='10' 
-                value='<?php echo \core\Array_Datos::values('precio', $datos); ?>' 
-                onblur="v_precio();"
+                value='<?php echo \core\Array_Datos::values('precio', $datos); ?>'               
                 <?php if(isset($lectura))echo $lectura; ?> />&euro;
         
         <span class="error" id="error_precio">
@@ -130,7 +125,7 @@
 <?php if(preg_match("/^form_insertar$/i", $metodo) || preg_match("/^form_modificar$/i", $metodo)): ?>
     <script type="text/javascript">
 	
-        
+       
 	function validar(){
             var c = 0;
             
@@ -153,17 +148,18 @@
         
         function v_vacio(dato){
             
-            id = "error_"+dato;
+            //id = "error_"+dato;
             
-            document.getElementById(id).innerHTML = "";
+            document.getElementById("error_"+dato).innerHTML = "";
             
             valor = document.getElementById(dato).value;
-            patron = /^\w+$/;
+            //alert("El "+dato+" es: "+valor);
+            patron = /^\w+$/i;
             
-            if(patron.test(valor))
+            if(patron.test(valor) && valor.length > 0)
                 return true;                      
             else{              
-                document.getElementById(id).innerHTML = "El campo '"+dato+"' no debe estar vac&iacute;o.";
+                document.getElementById("error_"+dato).innerHTML = "El campo '"+dato+"' no debe estar vac&iacute;o.";
                 return false;
             }
                 
@@ -173,7 +169,7 @@
             
             document.getElementById("error_fecha").innerHTML = "";          
             fecha = document.getElementById("fecha_de_lanzamiento").value;
-            
+            //alert("La fecha es: "+fecha);
             patron = /^[0123]{1}[1-9]{1}\/[01]{1}[1-9]{1}\/\d{4}$/;
             
             if(patron.test(fecha))
@@ -191,7 +187,7 @@
             
             document.getElementById("error_precio").innerHTML = "";                      
             precio = document.getElementById("precio").value;
-            
+            //alert("El precio es: "+precio);
             patron = /^\d{1,3}(,\d{1,2}){0,1}$/;
             
             if(patron.test(precio))

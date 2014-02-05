@@ -404,7 +404,7 @@ class mysqli implements \core\sgbd\SQL_interface {
 				$order_by
 				;
 		";
-		
+		//var_dump($sql);
 		return self::get_rows($sql);
 		
 	}
